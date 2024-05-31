@@ -24,25 +24,73 @@ body {
     font-size: x-large;
 }
 
-/*Radio Button Group*/
-.e-btn-group.custom-button-group {
-    width: 100%;
- 
+/*Buttons*/
+.e-btn {
+    font-size: 16px;
+    font-weight: bold;
+  
+
 }
+
+    .e-btn:hover {
+        background-color: #d2ccde;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      
+    }
+
+    .e-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    }
+
+    .e-btn:active {
+        background-color: #003d80;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+    }
+
+    .e-btn-group.custom-button-group {
+        width: 100%;
+    }
 
     .e-btn-group.custom-button-group .e-btn {
         width: 50%;
+        background-color: #f1eef6;
+        border: none;
+        border-radius: 6px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
     }
 
-.custom-button-group label.e-btn {
-    box-shadow: none !important;
-    border: 3px solid #fff;
-    border-radius: 4px;
-    color: #000000;
+    .e-btn-group.custom-button-group input:checked + label.e-btn {
+        transform: scale(1.1);
+        border: 1px solid #fff;
+        z-index: 1;
+        color: dimgrey;
+        background-color: #bdaaed;
+      
+    }
+ 
+/* Widget */
+
+.widget {
+    background-color: #f8f9fa; 
+    border: 1px solid #dee2e6; 
+    border-radius: 8px; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 600px; 
+    margin: 0 auto; 
 }
 
-.e-btn-group.custom-button-group input:checked + label.e-btn {
-    color: #212b36;
-    border: 1px solid #fff;
-    background-color: #b6ff00;
-}
+    .widget form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .control-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }

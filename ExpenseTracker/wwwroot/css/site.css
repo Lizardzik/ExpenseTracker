@@ -1,0 +1,48 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.e-bigger {
+    font-size: x-large;
+}
+
+/*Radio Button Group*/
+.e-btn-group.custom-button-group {
+    width: 100%;
+ 
+}
+
+    .e-btn-group.custom-button-group .e-btn {
+        width: 50%;
+    }
+
+.custom-button-group label.e-btn {
+    box-shadow: none !important;
+    border: 3px solid #fff;
+    border-radius: 4px;
+    color: #000000;
+}
+
+.e-btn-group.custom-button-group input:checked + label.e-btn {
+    color: #212b36;
+    border: 1px solid #fff;
+    background-color: #b6ff00;
+}

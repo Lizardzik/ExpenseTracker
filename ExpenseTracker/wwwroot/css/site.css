@@ -30,7 +30,9 @@ body {
 .e-bigger {
     font-size: x-large;
 }
-
+.main-content{
+    margin-left: 130px;
+}
 /*BreadCrumb*/
 .e-breadcrumb a, .e-breadcrumb a:hover {
     text-decoration: none !important;
@@ -115,6 +117,41 @@ body {
         margin-bottom: 20px;
     }
 
+    .income-widget {
+        border-left: 5px solid #28a745; 
+    }
+
+    .expense-widget {
+        border-left: 5px solid #dc3545; 
+    }
+
+    .balance-widget {
+        border-left: 5px solid #ffc107; 
+    }
+
+    .icon-wrapper {
+        background-color: #f8f9fa; 
+        border-radius: 10px 0 0 10px; 
+    }
+
+    .text-wrapper {
+        text-align: center;
+    }
+
+    .widget:hover {
+        transform: translateY(-5px); 
+        cursor: grab;
+    }
+
+    .chart {
+        padding: 10px 5px;
+    }
+
+.chart-responsive {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
 /* Grid Custom Styles */
 
 .e-grid {
@@ -126,15 +163,18 @@ body {
     color: #212529;
     padding: 10px;
 }
+
     .e-grid .e-rowcell {
         border-bottom: 1px solid #dee2e6;
         font-size: 1rem;
         color: #495057;
     }
+
     .e-grid .e-gridpager .e-pager {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
     }
+
     .e-grid .e-gridheader .e-headercell {
         background-color: #c2d6dc;
         color: #0e0d0d;
@@ -156,3 +196,23 @@ body {
     margin-left: 120px;
     max-width: 270px;
 }
+
+/*SideBar*/
+
+.sidebar-custom {
+    width: 250px;
+    padding: 10px 15px;
+    overflow: hidden;
+}
+
+    .sidebar-custom .title-header {
+        font-size: 1.25rem; 
+        font-weight: bold; 
+        color: #333; 
+        margin-bottom: 10px; 
+        border-bottom: 2px solid #ddd; 
+        padding-bottom: 5px; 
+        text-align: center;
+    }
+
+

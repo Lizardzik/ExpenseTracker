@@ -15,6 +15,7 @@
     <script src="https://cdn.syncfusion.com/ej2/25.2.3/dist/ej2.min.js"></script>
 </head>
 <body cite="e-bigger">
+    <partial name="_SideBar.cshtml" />
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -36,37 +37,42 @@
             </div>
         </nav>
     </header>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-				<main role="main" class="pb-3">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column mb-5">
-                                <div class="d-flex mb-1">
-                                    <div class="flex-grow-1">
-                                        <h3 class="fw-bold">@ViewData["PageTitle"]</h3>      
-                                    </div>
-                                    <div>
-                                        @if (ViewData["PageActionText"] != null)
-                                        {
-                                            <a class="btn btn-success text-white" href="@ViewData["PageActionUrl"]">
-                                                @ViewData["PageActionText"]
-                                            </a>
-                                        }                                   
+    <div class="main-content">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="@(ViewData["isDashboard"] == null?"col-md-10": "col-md-12")">
+                    <main role="main" class="pb-3">
+                        @if (ViewData["isDashboard"] == null)
+                        {
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="d-flex flex-column mb-5">
+                                        <div class="d-flex mb-1">
+                                            <div class="flex-grow-1">
+                                                <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                            </div>
+                                            <div>
+                                                @if (ViewData["PageActionText"] != null)
+                                                {
+                                                    <a class="btn btn-success text-white" href="@ViewData["PageActionUrl"]">
+                                                        @ViewData["PageActionText"]
+                                                    </a>
+                                                }
+                                            </div>
+                                        </div>
+                                        @Html.EJS().Breadcrumb("default").SeparatorTemplate("<span class='fa-solid fa-angle-right'></span>").Render()
                                     </div>
                                 </div>
-                                @Html.EJS().Breadcrumb("default").SeparatorTemplate("<span class='fa-solid fa-angle-right'></span>").Render()
-
-
                             </div>
-                        </div>
-                    </div>
-					@RenderBody()
-				</main>
+                        }
+                      
+                        @RenderBody()
+                    </main>
+                </div>
             </div>
         </div>
     </div>
+ 
 
     <footer class="border-top footer text-muted">
         <div class="container">

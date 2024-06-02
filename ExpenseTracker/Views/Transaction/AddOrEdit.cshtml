@@ -28,7 +28,7 @@
                </div>
                 <div class="control-section mb-3">
                     <div class="control_wrapper textbox-control-section">
-                            @Html.EJS().NumericTextBox("Amount").Value(Model.Amount).Placeholder("Amount").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).Min(0).Format("c0").HtmlAttributes(htmlAttributes["Amount"] as IDictionary<string, object>).Render()
+                        @Html.EJS().NumericTextBox("Amount").Value(Model.Amount).Placeholder("Amount").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).Min(0).Format("c0").Locale("pl-PL").Currency("PLN").HtmlAttributes(htmlAttributes["Amount"] as IDictionary<string, object>).Render()
                      </div> 
                     <span asp-validation-for="Amount" class="text-danger fs-6"></span>
                 </div>

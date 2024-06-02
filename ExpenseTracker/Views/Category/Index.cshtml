@@ -7,11 +7,11 @@
 
 <div class="row">
     <div class="col-md-7 grid-container">
-        @Html.EJS().Grid("Grid").DataSource((IEnumerable<object>)Model).Columns(col =>
+        @Html.EJS().Grid("Category").DataSource((IEnumerable<object>)Model).Columns(col =>
                  {
                      col.Field("TitleWithIcon").HeaderText("Category").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Left).Add();
                      col.Template("#typeColumnTemplate").HeaderText("Type").Width("130").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
-                     col.Template("#actionColumnTemplate").HeaderText("Action").Width("120").Add();
+                     col.Template("#actionColumnTemplate").HeaderText("Actions").Width("120").Add();
                  }).AllowPaging(true).PageSettings(page => page.PageSize(7)).Render()
     </div>
     <div class="widget col-md-5 d-flex justify-content-center align-items-center">

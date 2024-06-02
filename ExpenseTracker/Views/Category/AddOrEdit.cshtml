@@ -6,6 +6,10 @@
         { "Icon", new Dictionary<string, object> { { "name", "Icon" } } },
         { "Button", new Dictionary<string, object> { { "type", "submit" } } },
     };
+    var emojiIcons = new string[] {
+    "😊", "😎", "❤️", "💰", "📊", "📅", "💡", "🏠", "🛒", "🍔", "🚗", "✈️", "🏖️", "🎉", "🎧",
+    "⚽", "🎨", "📚", "🎸", "🎳", "🍕", "🍦", "🚀", "🌈", "🎭", "🎯", "🏆", "🔑", "🔨", "⌛"
+};
 
     ViewData["PageTitle"] = Model.CategoryId == 0 ? "Create a new category" : "Edit category";
 }
@@ -15,27 +19,34 @@
     <div class="col-md-7">
         <div class="widget p-5">
             <form asp-action="AddOrEdit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger fs-6"></div>
                 <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
-                <div class='e-btn-group custom-button-group'>
+                <div class='e-btn-group custom-button-group mb-3'>
                     <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type == "Expense")" />
                     <label class="e-btn" for="radioleft">Expense</label>
                     <input type="radio" id="radiomiddle" name="Type" value="Income" checked="@(Model.Type == "Income")" />
                     <label class="e-btn" for="radiomiddle">Income</label>
-                    <span asp-validation-for="Type" class="text-danger"></span>
+                    <span asp-validation-for="Type" class="text-danger fs-6"></span>
                 </div>
                 <div class="control-section">
                     <div class="control_wrapper textbox-control-section">
-                        @Html.EJS().TextBox("Title").Value(Model.Title).Placeholder("Title").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).HtmlAttributes(htmlAttributes["Title"] as IDictionary<string, object>).Render()
+                        @Html.EJS().TextBox("Title").Value(Model.Title).Placeholder("Title").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).HtmlAttributes(htmlAttributes["Title"] as IDictionary<string, object>).Render()
                     </div>
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <span asp-validation-for="Title" class="text-danger fs-6"></span>
                 </div>
-                <div class="control-section mb-3">
+                @* <div class="control-section mb-3">
                     <div class="control_wrapper textbox-control-section">
                         @Html.EJS().TextBox("Icon").Value(Model.Icon).Placeholder("Icon").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).HtmlAttributes(htmlAttributes["Icon"] as IDictionary<string, object>).Render()
                     </div>
-                    <span asp-validation-for="Icon" class="text-danger"></span>
+                    <span asp-validation-for="Icon" class="text-danger fs-6"></span>
+                </div> *@
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().DropDownList("iconSelect").PopupHeight("100px").Value(Model.Icon).Placeholder("Select Icon").HtmlAttributes(htmlAttributes["Icon"] as IDictionary<string, object>).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).DataSource(emojiIcons).Render()
+                    </div>
+                    <span asp-validation-for="Icon" class="text-danger fs-6"></span>
                 </div>
+
                 <div class="control-section mb-3">
                     @Html.EJS().Button("primarybtn").Content("Submit").CssClass("e-success").HtmlAttributes(htmlAttributes["Button"] as IDictionary<string, object>).Render()
                 </div>
@@ -47,6 +58,3 @@
     </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

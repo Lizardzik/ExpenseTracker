@@ -1,0 +1,53 @@
+﻿@model ExpenseTracker.Models.Transaction
+
+@{
+    Dictionary<string, object> htmlAttributes = new Dictionary<string, object>() {
+        { "Date", new Dictionary<string, object> { { "name", "Date" } } }, 
+        { "CategoryId", new Dictionary<string, object> { { "name", "CategoryId" } } },
+        { "Amount", new Dictionary<string, object> { { "name", "Amount" } } },
+        { "Note", new Dictionary<string, object> { { "name", "Note" } } },
+        { "Button", new Dictionary<string, object> { { "type", "submit" } } },
+    };
+
+    var dropdownFields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings { Text = "TitleWithIcon", Value = "CategoryId" };
+    ViewData["PageTitle"] = Model.CategoryId == 0 ? "Create a new Transaction" : "Edit Transaction";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="TransactionId" value="@Model.TransactionId" />
+               <div class="control-section mb-3 e-date-wrapper">
+                  @Html.EJS().DatePicker("datepicker").Value(Model.Date.ToString("dd-MMMM-yyyy")).HtmlAttributes(htmlAttributes["Date"] as IDictionary<string, object>).Format("dd-MMMM-yyyy").CssClass("e-datepicker").Placeholder("Date").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).Render()
+               </div>
+               <div class="control-section mb-3 e-dropdown-wrapper">
+                    @Html.EJS().DropDownList("Categories").Value(Model.CategoryId).AllowFiltering(true).IgnoreAccent(true).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).FilterType(Syncfusion.EJ2.DropDowns.FilterType.Contains).Placeholder("Select a Category").DataSource((IEnumerable<object>)ViewBag.Categories).Fields(dropdownFields).HtmlAttributes(htmlAttributes["CategoryId"] as IDictionary<string, object>).Render()
+                    <span asp-validation-for="CategoryId" class="text-danger fs-6"></span>
+               </div>
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                            @Html.EJS().NumericTextBox("Amount").Value(Model.Amount).Placeholder("Amount").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).Min(0).Format("c0").HtmlAttributes(htmlAttributes["Amount"] as IDictionary<string, object>).Render()
+                     </div> 
+                    <span asp-validation-for="Amount" class="text-danger fs-6"></span>
+                </div>
+                <div class="control-section">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("Note").Value(Model.Note).Multiline(true).Placeholder("Note").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).HtmlAttributes(htmlAttributes["Note"] as IDictionary<string, object>).Render()
+                    </div>
+                    <span asp-validation-for="Note" class="text-danger fs-6"></span>
+                </div>
+                <div class="control-section mb-3">
+                    @Html.EJS().Button("primarybtn").Content("Submit").CssClass("e-success").HtmlAttributes(htmlAttributes["Button"] as IDictionary<string, object>).Render()
+                </div>
+        </form>
+        </div>
+    </div>
+    <div class="widget col-md-5 d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-money-bill-trend-up fa-10x text-info"></i>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

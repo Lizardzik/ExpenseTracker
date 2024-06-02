@@ -26,7 +26,7 @@ namespace ExpenseTracker.Controllers
         }
 
 
-        // GET: Category/Create
+        // GET: Category/AddOrEdit
         public IActionResult AddOrEdit(int id = 0)
         {
             if(id == 0)
@@ -40,7 +40,7 @@ namespace ExpenseTracker.Controllers
            
         }
 
-        // POST: Category/Create
+        // POST: Category/AddOrEdit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)

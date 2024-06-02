@@ -116,47 +116,43 @@ body {
     }
 
 /* Grid Custom Styles */
+
 .e-grid {
     border-radius: 5px;
     font-size: 15px;
-   
 }
-.e-grid .e-headercell, .e-grid .e-rowcell  {
+    .e-grid .e-headercell, .e-grid .e-rowcell  {
     background-color: #f8f9fa;
     color: #212529;
-    font-weight: bold;
     padding: 10px;
 }
-
     .e-grid .e-rowcell {
         border-bottom: 1px solid #dee2e6;
         font-size: 1rem;
         color: #495057;
     }
-
-    .e-grid .e-headercell {
-        background-color: #f8f9fa;
-       
-        font-size: 1.2rem; 
-        color: #343a40; 
-        text-align: center;
-    }
-
-.e-grid .e-gridpager .e-pager {
+    .e-grid .e-gridpager .e-pager {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
-}
-
-.e-grid .e-gridpager .e-pager .e-numericcontainer a,
-.e-grid .e-gridpager .e-pager .e-numericcontainer .e-currentitem {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 4px;
-    margin: 0 2px;
-    padding: 5px 10px;
-}
+    }
     .e-grid .e-gridheader .e-headercell {
         background-color: #c2d6dc;
-        font-weight: bold !important;
         color: #0e0d0d;
     }
+
+/*DatePicker*/
+
+.e-float-text{
+  color: black !important;
+}
+.e-date-wrapper {
+    border-color: #ced4da !important;
+}
+.e-popup-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 120px;
+    max-width: 270px;
+}

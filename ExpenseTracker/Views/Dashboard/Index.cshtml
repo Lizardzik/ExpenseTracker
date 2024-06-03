@@ -1,5 +1,7 @@
 ﻿@{
 	ViewData["isDashboard"] = true;
+
+   
 }
 
 @*Widgets*@
@@ -43,40 +45,93 @@
     </div>
 </div>
 
-@*Chars*@
+@*Chars Expense*@
 <div class="row mb-4">
     <div class="col-md-4">
         <div class="widget chart">
             <div class="title p-4">
-                <h5 class="fw-bold">Expense By Category</h5>
+                <h5 class="fw-bold text-center">My Expenses</h5>
             </div>
-            <div id="ExpenseCharContainer" class="chart-container  small-chart">
-                @(Html.EJS().AccumulationChart("ExpenseChar")
-                    .DataSource((IEnumerable<object>)ViewBag.CharData)
-                    .Series(series =>
-                    {
-                        series.DataLabel(dl => dl.Visible(true)
-                        .Position(Syncfusion.EJ2.Charts.AccumulationLabelPosition.Inside)
-                        .Font(ft => ft.FontWeight("600"))
-                        .Name("formattedAmount"))
-                        .XName("categoryTitleWithIcon")
-                        .YName("amount")
-                        .InnerRadius("60%")
-                        .Name("Project").Border(br => br.Width(1))
-                        .ExplodeIndex(0).DataSource(ViewBag.CharData).Add();
-                    })
-                    .LegendSettings(legend =>
-                    {
-                        legend.Visible(true);
-                        legend.Position(Syncfusion.EJ2.Charts.LegendPosition.Bottom); 
-                        legend.Width("100%");
-                        legend.Padding(50);
+                <div id="ExpenseCharContainer">
+                @(
+                    Html.EJS().AccumulationChart("ExpenseChar")
+                        .EnableSmartLabels(true)
+                        .Tooltip(tooltip =>
+                        {
+                            tooltip.Enable(true);
+                            tooltip.Format("${point.x}: ${point.y}");
+                        })
+                        .DataSource((IEnumerable<object>)ViewBag.CharData)
+                        .Series(series =>
+                        {
+                            series.DataLabel(dl => dl.Visible(true)
+                            .Position(Syncfusion.EJ2.Charts.AccumulationLabelPosition.Inside)
+                            .Font(ft => ft.FontWeight("600").Color("black"))
+                            .Name("formattedAmount"))
+                            .XName("categoryTitleWithIcon")
+                            .YName("amount")
+                            .InnerRadius("55%")
+                            .Name("Expense").Border(br => br.Width(1))
+                            .LegendShape(Syncfusion.EJ2.Charts.LegendShape.Circle)
+                            .ExplodeIndex(0).DataSource(ViewBag.CharData).Add();
+                        })
+                        .LegendSettings(legend =>
+                        {
+                            legend.Visible(true);
+                            legend.Position(Syncfusion.EJ2.Charts.LegendPosition.Bottom); 
+                            legend.Width("100%");
+                            legend.TextStyle(style => { style.FontWeight("600").Color("#000"); });
+                            legend.Padding(10);
                     })
                     .Render()
                     )
             </div>
-            <div class="col-md-8"></div>
+            </div>
         </div>
-    </div>
-
-</div>
+        <div class="col-md-8">
+                <div class="widget chart"> 
+                    <div class="title p-4">
+                        <h5 class="fw-bold text-center">Income VS Expense</h5>
+                    </div>
+            <div id="container" style="width: 100%;">
+                @Html.EJS().Chart("container").Palettes(new string[] { "#28a745", "#dc3545" }).PrimaryXAxis(px => px
+                         .ValueType(Syncfusion.EJ2.Charts.ValueType.Category)
+                         .LabelStyle(ls => ls.Color("#000"))
+                         .MajorGridLines(mg => mg.Width(0))
+                         .MajorTickLines(mt => mt.Width(0))
+                         ).PrimaryYAxis(py => py
+                         .LabelStyle(ls => ls.Color("#000"))
+                         .MajorGridLines(mg => mg.Width(1).Color("#32414d").DashArray("3,5"))
+                         .MajorTickLines(mt => mt.Width(0))
+                         .LineStyle(ls => ls.Width(0))
+                         ).ChartArea(ca => ca
+                         .Border(b => b.Width(0))
+                         ).Series(series =>
+                         {
+                             series.Type(Syncfusion.EJ2.Charts.ChartSeriesType.Spline)
+                             .XName("day")
+                             .YName("income")
+                             .DataSource(ViewBag.ChartData)
+                             .Name("Income")
+                             .Width(3)
+                             .Add();
+                             series.Type(Syncfusion.EJ2.Charts.ChartSeriesType.Spline)
+                             .XName("day")
+                             .YName("expense")
+                             .DataSource(ViewBag.ChartData)
+                             .Name("Expense")
+                             .Width(3)
+                             .Add();
+                         }).PrimaryYAxis(axis => axis.Minimum(-500)).LegendSettings(legend =>
+                         {
+                             legend.Position(Syncfusion.EJ2.Charts.LegendPosition.Bottom)
+                             .EnableHighlight(true)
+                             .Padding(10)
+                             .ToggleVisibility(false)
+                             .TextStyle(ts => ts.Color("#000").Size("1rem"));
+                         }).Tooltip(tt => tt.Enable(true).Format("${point.x}: ${point.y}")).Render()
+            </div>
+                   
+           </div>
+      </div>
+ </div>

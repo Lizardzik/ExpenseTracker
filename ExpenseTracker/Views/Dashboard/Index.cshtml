@@ -4,10 +4,9 @@
    
 }
 
-@*Widgets*@
+@* Summary Widgets*@
 <div class="row mb-4">
-    <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4">
             <div class="d-flex flex-row widget summary income-widget">
                 <div class="d-flex flex-column justify-content-center p-5 icon-wrapper">
                     <i class="fa-solid fa-arrow-trend-up fa-2xl"></i>
@@ -19,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4">
             <div class="d-flex flex-row widget summary expense-widget">
                 <div class="d-flex flex-column justify-content-center p-5 icon-wrapper">
                     <i class="fa-solid fa-arrow-trend-down fa-2xl"></i>
@@ -31,7 +30,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4">
             <div class="d-flex flex-row widget summary balance-widget">
                 <div class="d-flex flex-column justify-content-center p-5 icon-wrapper">
                     <i class="fa-solid fa-sack-dollar fa-2xl"></i>
@@ -42,17 +41,15 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
-@*Chars Expense*@
+@*Widget Charts*@
 <div class="row mb-4">
     <div class="col-md-4">
-        <div class="widget chart">
+        <div class="widget chart  expense-widget-chart w-100">
             <div class="title p-4">
                 <h5 class="fw-bold text-center">My Expenses</h5>
             </div>
-                <div id="ExpenseCharContainer">
                 @(
                     Html.EJS().AccumulationChart("ExpenseChar")
                         .EnableSmartLabels(true)
@@ -85,15 +82,14 @@
                     })
                     .Render()
                     )
-            </div>
+            
             </div>
         </div>
-        <div class="col-md-8">
-                <div class="widget chart"> 
-                    <div class="title p-4">
+    <div class="col-md-8">
+        <div class="widget balance-widget-chart">
+            <div class="title p-4">
                         <h5 class="fw-bold text-center">Income VS Expense</h5>
                     </div>
-            <div id="container" style="width: 100%;">
                 @Html.EJS().Chart("container").Palettes(new string[] { "#28a745", "#dc3545" }).PrimaryXAxis(px => px
                          .ValueType(Syncfusion.EJ2.Charts.ValueType.Category)
                          .LabelStyle(ls => ls.Color("#000"))
@@ -130,8 +126,48 @@
                              .ToggleVisibility(false)
                              .TextStyle(ts => ts.Color("#000").Size("1rem"));
                          }).Tooltip(tt => tt.Enable(true).Format("${point.x}: ${point.y}")).Render()
-            </div>
-                   
            </div>
       </div>
  </div>
+
+@*Recent transactions*@
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget" style="height: 410px !important;">
+            <div class="title p-4">
+                <h5 class="fw-bold text-center">Recently Added Transactions</h5>
+            </div>
+            <div class="px-4 pb-4">
+                   @Html.EJS().Grid("Transcations").DataSource((IEnumerable<object>)ViewBag.RecentTransactions).Columns(col =>
+                         {
+                             col.Field("CategoryTitleWithIcon").HeaderText("Category").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Left).Add();
+                             col.Field("Date").HeaderText("Date").Width("140").Type("date").Format("dd-MMM-yy").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                             col.Field("FormattedAmount").HeaderText("Amount").Width("130").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                         }).GridLines(Syncfusion.EJ2.Grids.GridLine.None).Render()      
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="widget" style="height: 410px !important;">
+            <div class="title p-4">
+                <h5 class="fw-bold text-center">Recently Added Categories</h5>
+            </div>
+            <div class="px-4 pb-4">
+                @Html.EJS().Grid("Categories").DataSource((IEnumerable<object>)ViewBag.RecentCategories).Columns(col =>
+                         {
+                             col.Field("TitleWithIcon").HeaderText("Category").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Left).Add();
+                             col.Template("#typeColumnTemplate").HeaderText("Type").Width("130").TextAlign(Syncfusion.EJ2.Grids.TextAlign.Center).Add();
+                         }).GridLines(Syncfusion.EJ2.Grids.GridLine.None).Render()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="typeColumnTemplate" type="text/x-template">
+    ${if(Type=="Income")}
+        <span class="badge bg-success">${Type}</span>
+    ${else}
+         <span class="badge bg-danger">${Type}</span>
+    ${/if}
+
+</script>

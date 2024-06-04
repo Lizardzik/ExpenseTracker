@@ -1,8 +1,45 @@
 ﻿@{
+    List<Object> menuItems = new List<Object>();
+
+ 
+    menuItems.Add(new
+    {
+        text = "Dashboard",
+        url = "/",
+        iconCss = "fa-solid fa-house-laptop"
+    });
+    menuItems.Add(new
+    {
+        text = "Categories",
+        iconCss = "fa-solid fa-layer-group",
+        items = new List<object>()
+            {
+                new { text = "Display", url = "/Category" },
+                new { separator = true},
+                new { text = "Add" , url ="/Category/AddOrEdit" }
+            }
+    });
+    menuItems.Add(new
+    {
+        text = "Transactions",
+        iconCss = "fa-solid fa-shuffle",
+        items = new List<object>()
+            {
+                new { text = "Display" ,  url = "/Transaction" },
+                new { separator = true},
+                new { text = "Add" , url ="/Transaction/AddOrEdit" }
+            }
+    });
+
+}
+@{
     Html.EJS().Sidebar("default-sidebar").CloseOnDocumentClick(false).ContentTemplate(
     @<div class="sidebar-custom">
         <div class="title-header">
-            <div style="display:inline-block"> Sidebar </div>
+            <div style="display:inline-block"> Menu </div>  
         </div>
+        @Html.EJS().Menu("menu").HamburgerMode(true).ShowItemOnClick(true).Orientation(Syncfusion.EJ2.Navigations.Orientation.Vertical).Items(menuItems).Render()
     </div>).Render();
+
+  
 }

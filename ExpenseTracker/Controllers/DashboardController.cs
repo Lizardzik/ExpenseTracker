@@ -79,6 +79,7 @@ namespace ExpenseTracker.Controllers
 
             //Recent Categories
             ViewBag.RecentCategories = await _context.Categories.OrderByDescending(i => i.CategoryId).Take(5).ToListAsync();
+
             return View();
         }
     }

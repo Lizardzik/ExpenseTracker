@@ -1,7 +1,5 @@
 ﻿@{
 	ViewData["isDashboard"] = true;
-
-   
 }
 
 @* Summary Widgets*@
@@ -118,7 +116,7 @@
                              .Name("Expense")
                              .Width(3)
                              .Add();
-                         }).PrimaryYAxis(axis => axis.Minimum(-500)).LegendSettings(legend =>
+                         }).PrimaryYAxis(axis => axis.Minimum(-1000)).LegendSettings(legend =>
                          {
                              legend.Position(Syncfusion.EJ2.Charts.LegendPosition.Bottom)
                              .EnableHighlight(true)
@@ -136,6 +134,7 @@
         <div class="widget" style="height: 410px !important;">
             <div class="title p-4">
                 <h5 class="fw-bold text-center">Recently Added Transactions</h5>
+                <hr/>
             </div>
             <div class="px-4 pb-4">
                    @Html.EJS().Grid("Transcations").DataSource((IEnumerable<object>)ViewBag.RecentTransactions).Columns(col =>
@@ -151,6 +150,7 @@
         <div class="widget" style="height: 410px !important;">
             <div class="title p-4">
                 <h5 class="fw-bold text-center">Recently Added Categories</h5>
+                <hr />
             </div>
             <div class="px-4 pb-4">
                 @Html.EJS().Grid("Categories").DataSource((IEnumerable<object>)ViewBag.RecentCategories).Columns(col =>

@@ -10,6 +10,7 @@ using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Controllers
 {
+    [RequireLogin]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +21,7 @@ namespace ExpenseTracker.Controllers
         }
 
         // GET: Category
+     
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categories.ToListAsync());

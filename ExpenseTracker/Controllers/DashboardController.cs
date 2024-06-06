@@ -6,6 +6,7 @@ using System.Transactions;
 
 namespace ExpenseTracker.Controllers
 {
+    [RequireLogin]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;

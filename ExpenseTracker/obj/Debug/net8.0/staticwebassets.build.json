@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bebHnojhJpzC5AlTGET0uduhQNzrh+fWrNR7e5EQeBQ=",
+  "Hash": "TfQnblDHh1AAFns4UJgpTlxWJta8fXhvHPaU/Ks+2CI=",
   "Source": "ExpenseTracker",
   "BasePath": "_content/ExpenseTracker",
   "Mode": "Default",
@@ -93,6 +93,25 @@
       "OriginalItemSpec": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ExpenseTracker.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\css\\login.css",
+      "SourceId": "ExpenseTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\",
+      "BasePath": "_content/ExpenseTracker",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
       "Identity": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\css\\site.css",
       "SourceId": "ExpenseTracker",
       "SourceType": "Discovered",
@@ -129,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\js\\login.js",
+      "SourceId": "ExpenseTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\",
+      "BasePath": "_content/ExpenseTracker",
+      "RelativePath": "js/login.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\login.js"
     },
     {
       "Identity": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\js\\site.js",

@@ -1,4 +1,8 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿document.addEventListener('DOMContentLoaded', function () {
+    var sidebar = document.getElementById('default-sidebar').ej2_instances[0];
+    var navbar = document.querySelector('.navbar');
+    document.getElementById('toggle-btn').onclick = function () {
+        sidebar.toggle();
+        navbar.classList.toggle('shifted');
+    }
+});

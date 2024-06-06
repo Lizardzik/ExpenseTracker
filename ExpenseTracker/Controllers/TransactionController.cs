@@ -10,6 +10,7 @@ using ExpenseTracker.Models;
 
 namespace ExpenseTracker.Controllers
 {
+    [RequireLogin]
     public class TransactionController : Controller
     {
         private readonly ApplicationDbContext _context;

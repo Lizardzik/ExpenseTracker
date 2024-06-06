@@ -22,4 +22,8 @@
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="25.2.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Profiles\" />
+  </ItemGroup>
+
 </Project>

@@ -47,8 +47,11 @@ namespace ExpenseTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
         {
+            var userNickname = HttpContext.Session.GetString("Nickname");
+            var userId = _context.User.Where(u => u.Nickname == userNickname).Select(u => u.Id).FirstOrDefault();
             if (ModelState.IsValid)
             {
+                category.UserId = userId;
                 if(category.CategoryId == 0)
                 {
                     _context.Add(category);

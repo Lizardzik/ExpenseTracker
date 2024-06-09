@@ -42,7 +42,7 @@
                 </div> *@
                 <div class="control-section mb-3">
                     <div class="control_wrapper textbox-control-section">
-                        @Html.EJS().DropDownList("iconSelect").PopupHeight("100px").Value(Model.Icon).Placeholder("Select Icon").HtmlAttributes(htmlAttributes["Icon"] as IDictionary<string, object>).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).DataSource(emojiIcons).Render()
+                        @Html.EJS().DropDownList("iconSelect").PopupHeight("200px").Value(Model.Icon).Placeholder("Select Icon").HtmlAttributes(htmlAttributes["Icon"] as IDictionary<string, object>).FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).DataSource(emojiIcons).Render()
                     </div>
                     <span asp-validation-for="Icon" class="text-danger fs-6"></span>
                 </div>

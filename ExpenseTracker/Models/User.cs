@@ -18,7 +18,7 @@ namespace ExpenseTracker.Models
         [Column(TypeName = "nvarchar(50)")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Nick Name is required")]
+        [Required(ErrorMessage = "NickName is required")]
         [StringLength(50, ErrorMessage = "Nick Name cannot be longer than 50 characters")]
         [Column(TypeName = "nvarchar(50)")]
         public string Nickname { get; set; }
@@ -29,5 +29,27 @@ namespace ExpenseTracker.Models
         public string Password { get; set; }
 
         public byte[]? ProfileImage { get; set; }
+
+        //OTHER
+        [NotMapped]
+       
+        public string NicknameLogin { get; set; }
+        [NotMapped]
+       
+        public string PasswordLogin { get; set; }
+
+        [NotMapped]
+        public string? DisplayImage
+        {
+            get
+            {
+                if (ProfileImage != null && ProfileImage.Length > 0)
+                {
+                    string base64String = Convert.ToBase64String(ProfileImage);
+                    return $"data:image/jpg;base64,{base64String}";
+                }
+                return string.Empty; 
+            }
+        }
     }
 }

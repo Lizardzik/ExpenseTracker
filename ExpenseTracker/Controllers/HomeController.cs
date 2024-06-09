@@ -28,6 +28,8 @@ namespace ExpenseTracker.Controllers
         public async Task<IActionResult> Register(User user, IFormFile profileImage)
         {
             ModelState.Remove("ProfileImage");
+            ModelState.Remove("NicknameLogin");
+            ModelState.Remove("PasswordLogin");
             if (ModelState.IsValid)
             {
                 if (profileImage != null && profileImage.Length > 0)
@@ -54,21 +56,28 @@ namespace ExpenseTracker.Controllers
         // POST: Home/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(string nickname, string password)
+        public async Task<IActionResult> Login(string nicknameLogin, string passwordLogin)
         {
-            var user = await _context.User.FirstOrDefaultAsync(u => u.Nickname == nickname);
+            var user = await _context.User.FirstOrDefaultAsync(u => u.Nickname == nicknameLogin);
 
-            if (user != null && user.Password == password)
+            if (user != null && user.Password == passwordLogin)
             {
                 HttpContext.Session.SetString("Nickname", user.Nickname);
                 return RedirectToAction("Index", "Dashboard");
             }
 
-            ViewBag.LoginError = "Nieprawid³owa nazwa u¿ytkownika lub has³o.";
+            ViewBag.LoginError = "Invalid username or password!";
 
             var emptyUser = new User();
-            ViewBag.IsChecked = true; 
+            ViewBag.IsChecked = true;
             return View("Index", emptyUser);
+        }
+
+        // GET: Home/Logout
+        public IActionResult Logout()
+        {       
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

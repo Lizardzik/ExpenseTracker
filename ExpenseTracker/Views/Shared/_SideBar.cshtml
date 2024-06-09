@@ -1,11 +1,15 @@
 ﻿@{
     List<Object> menuItems = new List<Object>();
 
- 
+    menuItems.Add(new
+    {
+        text = "General",
+        separator = true,
+    });
     menuItems.Add(new
     {
         text = "Dashboard",
-        url = "/",
+        url = "/Dashboard",
         iconCss = "fa-solid fa-house-laptop"
     });
     menuItems.Add(new
@@ -30,7 +34,17 @@
                 new { text = "Add" , url ="/Transaction/AddOrEdit" }
             }
     });
-
+    menuItems.Add(new
+    {
+        text = "Other",
+        separator = true,
+    });
+    menuItems.Add(new
+    {
+        text = "Log out",
+        url = "/Home/Logout",
+        iconCss = "fa-solid fa-arrow-right-from-bracket"
+    });
 }
 @{
     Html.EJS().Sidebar("default-sidebar").Width(250).CloseOnDocumentClick(false).EnableGestures(false).EnableDock(true).DockSize(85).ContentTemplate(

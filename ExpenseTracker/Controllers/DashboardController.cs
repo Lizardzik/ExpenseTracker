@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Data;
+using ExpenseTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -17,11 +18,15 @@ namespace ExpenseTracker.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            //Stats from a month
+            //DATA
+            var userNickname = HttpContext.Session.GetString("Nickname");
+            var userId = _context.User.Where(u => u.Nickname == userNickname).Select(u => u.Id).FirstOrDefault();
             DateTime StartDate = DateTime.Today.AddDays(-7);
             DateTime EndDate = DateTime.Today;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("pl-PL");
+            culture.NumberFormat.CurrencyNegativePattern = 1;
 
-            List<Models.Transaction> transactions = await _context.Transactions.Include(x => x.Category).ToListAsync();
+            List<Models.Transaction> transactions = await _context.Transactions.Where(t => t.UserId == userId).Include(x => x.Category).ToListAsync();
 
             //Income
             int Income = transactions.Where(i => i.Category.Type == "Income").Sum(j => j.Amount);
@@ -32,9 +37,7 @@ namespace ExpenseTracker.Controllers
             ViewBag.Expense = Expense.ToString("C0");
 
             //Balance
-            int Balance = Income - Expense;
-            CultureInfo culture = CultureInfo.CreateSpecificCulture("pl-PL");
-            culture.NumberFormat.CurrencyNegativePattern = 1;
+            int Balance = Income - Expense;        
             ViewBag.Balance = String.Format(culture, "{0:C0}", Balance);
 
             //Chars - Expenses
@@ -78,10 +81,16 @@ namespace ExpenseTracker.Controllers
             //Recent Transactions
             ViewBag.RecentTransactions = await _context.Transactions.Include(i => i.Category).OrderByDescending(j => j.Date).Take(5).ToListAsync();
 
-            //Recent Categories
-            ViewBag.RecentCategories = await _context.Categories.OrderByDescending(i => i.CategoryId).Take(5).ToListAsync();
+            //User Actions
+            User user = await _context.User.FirstOrDefaultAsync();
 
-            return View();
+            ViewBag.RecentUsers = await _context.User.OrderByDescending(i => i.Id).Take(3).ToListAsync();
+
+         
+            var userImage = _context.User.FirstOrDefault(u => u.Nickname == userNickname)?.DisplayImage;
+            HttpContext.Session.SetString("UserImage", userImage ?? "");
+
+            return View(user);
         }
     }
 

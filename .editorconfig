@@ -5,3 +5,6 @@ dotnet_diagnostic.CS8602.severity = none
 
 # CS8618: Pole niedopuszczające wartości null musi zawierać wartość inną niż null podczas kończenia działania konstruktora. Rozważ zadeklarowanie pola jako dopuszczającego wartość null.
 dotnet_diagnostic.CS8618.severity = none
+
+# CS8600: Konwertowanie literału null lub możliwej wartości null na nienullowalny typ.
+dotnet_diagnostic.CS8600.severity = none

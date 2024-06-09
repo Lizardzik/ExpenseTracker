@@ -23,14 +23,25 @@ namespace ExpenseTracker.Controllers
         // GET: Transaction
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Transactions.Include(t => t.Category);
-            return View(await applicationDbContext.ToListAsync());
+            var userNickname = HttpContext.Session.GetString("Nickname");
+            var userId = _context.User
+                                .Where(u => u.Nickname == userNickname)
+                                .Select(u => u.Id)
+                                .FirstOrDefault();
+
+            var userTransactions = _context.Transactions
+                                            .Where(t => t.UserId == userId)
+                                            .Include(t => t.Category)
+                                            .ToListAsync();
+
+            return View(await userTransactions);
         }
 
         // GET: Transaction/AddOrEdit
         public IActionResult AddOrEdit(int id=0)
         {
             PopulateCategories();
+
             if(id == 0)
             {
                 return View(new Transaction());
@@ -47,9 +58,12 @@ namespace ExpenseTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
+            var userNickname = HttpContext.Session.GetString("Nickname");
+            var userId = _context.User.Where(u => u.Nickname == userNickname).Select(u => u.Id).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                if(transaction.TransactionId == 0)
+                transaction.UserId = userId;
+                if (transaction.TransactionId == 0)
                 {
                     _context.Add(transaction);
                 }

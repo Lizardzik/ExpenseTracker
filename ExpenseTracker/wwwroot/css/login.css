@@ -142,9 +142,9 @@ label {
 .e-message.custom-success-message {
     display: flex;
     justify-content: center;
-    align-items: center; 
-    text-align: center; 
-    border-radius: 20px; 
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
 }
 
     .e-message.custom-success-message .e-msg-content {

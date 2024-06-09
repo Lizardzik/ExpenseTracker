@@ -36,7 +36,7 @@
                                                 @if (ViewData["PageActionText"] != null)
                                                 {
                                                     <a class="btn btn-success text-white" href="@ViewData["PageActionUrl"]">
-                                                        @ViewData["PageActionText"];
+                                                        @ViewData["PageActionText"]
                                                     </a>
                                                 }
                                             </div>
@@ -55,6 +55,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/navbar.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
     @Html.EJS().ScriptManager()
 </body>

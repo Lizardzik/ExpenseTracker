@@ -46,3 +46,5 @@ Expense Tracker is a web application that allows users to track their personal e
 ## Development Time
 
 I spent approximately 36 hours developing this project. It is far from perfect but im trying to improve.
+
+![ExpenseTracker](https://github.com/Lizardzik/ExpenseTracker/assets/171255022/70b0ed3c-e47e-43f8-b4c4-ce4f4e1714a8)

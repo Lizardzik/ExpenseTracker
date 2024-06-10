@@ -1,0 +1,83 @@
+﻿@model ExpenseTracker.Models.User
+@{
+    Dictionary<string, object> htmlAttributes = new Dictionary<string, object>() {
+        { "FirstName", new Dictionary<string, object> { { "name", "FirstName" } } },
+        { "LastName", new Dictionary<string, object> { { "name", "LastName" } } },
+        { "Nickname", new Dictionary<string, object> { { "name", "Nickname" } } },
+        { "Password", new Dictionary<string, object> { { "name", "Password" } } },
+        { "NewPassword", new Dictionary<string, object> { { "name", "NewPassword" } } },
+        { "ProfileImage", new Dictionary<string, object> { { "name", "ProfileImage" } } },
+        { "Button", new Dictionary<string, object> { { "type", "submit" } } }
+    };
+
+    var userImage = @Context.Session.GetString("UserImage");
+    var imageUrl = !string.IsNullOrEmpty(userImage) ? userImage : "~/userImage.png";
+    ViewData["PageTitle"] = "User Settings";
+}
+<link rel="stylesheet" href="~/css/user.css">
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="User" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger fs-6"></div>
+                @if (ViewBag.PasswordError != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.PasswordError
+                    </div>
+                }
+
+                <input type="hidden" name="Id" value="@Model.Id" />
+
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("FirstName").Value(Model.FirstName).Placeholder("First Name").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).HtmlAttributes(htmlAttributes["FirstName"] as IDictionary<string, object>).Render()
+                    </div>
+                    <span asp-validation-for="FirstName" class="text-danger fs-6 align-content-center d-flex justify-content-center"></span>
+                </div>
+
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("LastName").Value(Model.LastName).Placeholder("Last Name").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).HtmlAttributes(htmlAttributes["LastName"] as IDictionary<string, object>).Render()
+                    </div>
+                    <span asp-validation-for="LastName" class="text-danger fs-6 align-content-center d-flex justify-content-center"></span>
+                </div>
+
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("Nickname").Value(Model.Nickname).Placeholder("Nickname").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Always).HtmlAttributes(htmlAttributes["Nickname"] as IDictionary<string, object>).Render()
+                    </div>
+                    <span asp-validation-for="Nickname" class="text-danger fs-6 align-content-center d-flex justify-content-center"></span>
+                </div>
+
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("Password").Value("").Placeholder("Password").Type("password").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).HtmlAttributes(htmlAttributes["Password"] as IDictionary<string, object>).Render()
+                    </div>
+                </div>
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().TextBox("NewPassword").Value("").Placeholder("New Password").Type("password").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).HtmlAttributes(htmlAttributes["NewPassword"] as IDictionary<string, object>).Render()
+                    </div>              
+                </div>
+
+                <div class="control-section mb-3">
+                    <div class="control_wrapper textbox-control-section">
+                        @Html.EJS().Uploader("ProfileImageUploader").Multiple(false).AllowedExtensions(".jpg").HtmlAttributes(htmlAttributes["ProfileImage"] as IDictionary<string, object>).Render()
+                    </div>
+                 
+                </div>
+                <div class="control-section mb-3">
+                    @Html.EJS().Button("submitButton").Content("Save Changes").CssClass("e-success").HtmlAttributes(htmlAttributes["Button"] as IDictionary<string, object>).Render()
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="widget col-md-5 d-flex justify-content-center align-items-center">
+        <div class="profile-image-container">
+            <img src="@(Model.DisplayImage ?? "~/userImage.png")" alt="Profile Image" class="profile-image" />
+
+        </div>
+    </div>
+</div>

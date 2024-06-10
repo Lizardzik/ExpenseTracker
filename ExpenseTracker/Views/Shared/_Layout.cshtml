@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isDashboardPage = ViewData["isDashboard"] != null;
+    bool isUserPage = ViewData["isUserPage"] != null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,7 +18,14 @@
     <link rel="stylesheet" href="~/ExpenseTracker.styles.css" asp-append-version="true" />
     <script src="https://cdn.syncfusion.com/ej2/25.2.3/dist/ej2.min.js"></script>
 </head>
+
 <body cite="e-bigger">
+    @if (isDashboardPage || isUserPage)
+    {
+        <div id="loading-overlay" class="loading-overlay">
+            <img src="~/loading.gif" alt="Loading..." class="loading-gif" />
+        </div>
+    }
         <partial name="_SideBar.cshtml"/>
         <partial name="_NavBar.cshtml" />
 
@@ -41,7 +52,7 @@
                                                 }
                                             </div>
                                         </div>
-                                        @Html.EJS().Breadcrumb("default").SeparatorTemplate("<span class='fa-solid fa-angle-right'></span>").Render()
+                                      @*   @Html.EJS().Breadcrumb("default").SeparatorTemplate("<span class='fa-solid fa-angle-right'></span>").Render() *@
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +66,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/navbar.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
     @Html.EJS().ScriptManager()

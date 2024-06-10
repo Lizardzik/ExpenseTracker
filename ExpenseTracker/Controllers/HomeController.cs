@@ -2,6 +2,7 @@ using ExpenseTracker.Data;
 using ExpenseTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.Diagnostics;
 
 namespace ExpenseTracker.Controllers
@@ -63,6 +64,7 @@ namespace ExpenseTracker.Controllers
             if (user != null && user.Password == passwordLogin)
             {
                 HttpContext.Session.SetString("Nickname", user.Nickname);
+                HttpContext.Session.SetInt32("UserId", user.Id);
                 return RedirectToAction("Index", "Dashboard");
             }
 
@@ -78,6 +80,68 @@ namespace ExpenseTracker.Controllers
         {       
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
+        }
+
+        // GET: Home/User
+        public async Task<IActionResult> User()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = await _context.User.FindAsync(userId);
+            ViewData["isUserPage"] = true;
+            return View(user);
+        }
+
+        // POST: Home/User
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> User(User user, IFormFile profileImage)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var currentUser = await _context.User.FindAsync(userId);
+
+            ModelState.Remove("ProfileImage");
+            ModelState.Remove("NewPassword");
+            ModelState.Remove("NicknameLogin");
+            ModelState.Remove("PasswordLogin");
+
+            //if the password valid perform the rest
+            if (!currentUser.Password.Equals(user.Password))
+            {
+                ViewBag.PasswordError = "Please provide a correct password to save changes.";
+            }
+            else
+            {
+                // Update the password if newPassword is provided
+                if (!string.IsNullOrEmpty(user.NewPassword))
+                {
+                    currentUser.Password = user.NewPassword;
+                }
+
+                // Convert and update profile image
+                if (profileImage != null && profileImage.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await profileImage.CopyToAsync(memoryStream);
+                        currentUser.ProfileImage = memoryStream.ToArray();
+                    }
+                }
+                //update the rest
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
+                currentUser.Nickname = user.Nickname;
+            }
+
+            if (ModelState.IsValid)
+            {
+                HttpContext.Session.SetString("Nickname", user.Nickname);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "User has been updated successfully.";
+                return RedirectToAction("Index", "Dashboard");
+            }
+
+            ViewData["isUserPage"] = true;
+            return View(currentUser);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

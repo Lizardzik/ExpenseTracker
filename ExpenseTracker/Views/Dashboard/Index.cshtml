@@ -3,6 +3,15 @@
 }
 @model ExpenseTracker.Models.User
 
+@*Success message alert*@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 @* Summary Widgets*@
 <div class="row mb-4">
         <div class="col-md-4">
@@ -11,7 +20,7 @@
                     <i class="fa-solid fa-arrow-trend-up fa-2xl"></i>
                 </div>
                 <div class="d-flex flex-column m-auto py-3 text-wrapper">
-                    <span class="lead">Your Total Income</span>
+                    <span class="lead">Total Income</span>
                     <h1 class="display-6 fw-bold">@ViewBag.Income</h1>
                 </div>
             </div>
@@ -23,7 +32,7 @@
                     <i class="fa-solid fa-arrow-trend-down fa-2xl"></i>
                 </div>
                 <div class="d-flex flex-column m-auto py-3 text-wrapper">
-                <span class="lead">Your Total Expenses</span>
+                <span class="lead">Total Expenses</span>
                     <h1 class="display-6 fw-bold">@ViewBag.Expense</h1>
                 </div>
             </div>
@@ -35,7 +44,7 @@
                     <i class="fa-solid fa-sack-dollar fa-2xl"></i>
                 </div>
                 <div class="d-flex flex-column m-auto py-3 text-wrapper">
-                <span class="lead"> Your Total Balance</span>
+                <span class="lead">Total Balance</span>
                     <h1 class="display-6 fw-bold">@ViewBag.Balance</h1>
                 </div>
             </div>
@@ -184,3 +193,4 @@
         </div>
     </div>
 </div>
+

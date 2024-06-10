@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\css\\user.css",
+      "PackagePath": "staticwebassets\\css\\user.css"
+    },
+    {
       "Id": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -251,6 +255,10 @@
     {
       "Id": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\loading.gif",
+      "PackagePath": "staticwebassets\\loading.gif"
     },
     {
       "Id": "C:\\Users\\rjasi\\source\\repos\\ExpenseTracker\\ExpenseTracker\\wwwroot\\userImage.png",

@@ -41,10 +41,17 @@
     });
     menuItems.Add(new
     {
+        text = "Settings",
+        url = "/Home/User",
+        iconCss = "fa-solid fa-wrench"
+    });
+    menuItems.Add(new
+    {
         text = "Log out",
         url = "/Home/Logout",
         iconCss = "fa-solid fa-arrow-right-from-bracket"
     });
+  
 }
 @{
     Html.EJS().Sidebar("default-sidebar").Width(250).CloseOnDocumentClick(false).EnableGestures(false).EnableDock(true).DockSize(85).ContentTemplate(

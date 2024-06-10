@@ -48,11 +48,8 @@
                     <span asp-validation-for="Password" class="text-danger "></span>
                         @Html.EJS().TextBox("password").Type("password").Placeholder("Password").FloatLabelType(Syncfusion.EJ2.Inputs.FloatLabelType.Auto).Value(Model.Password).Render()
                     </div>
-                    <div class="form-group-button">
-                        <input type="file" id="profileImage" name="profileImage" accept="image/jpeg" style="display: none;" >
-                    <label for="profileImage" class="e-input-group-icon e-upload-picture" data-toggle="tooltip" data-placement="top" title="only JPG format">Select Image</label>
-                        @Html.HiddenFor(model => model.ProfileImage)
-                        <span id="selectedFileName" style="margin-left: 10px; font-weight: bold; font-size: 17px;"></span>
+                     <div class="form-group-button">
+                    @Html.EJS().Uploader("ProfileImage").Multiple(false).AllowedExtensions(".jpg").Render()
                     </div>
                     <div class="form-group">
                         @Html.EJS().Button("primarybtn").Content("Register").CssClass("btn btn-success").Render()

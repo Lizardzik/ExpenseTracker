@@ -32,12 +32,11 @@ namespace ExpenseTracker.Models
 
         //OTHER
         [NotMapped]
-       
-        public string NicknameLogin { get; set; }
+        public string? NewPassword { get; set; }
         [NotMapped]
-       
+        public string NicknameLogin { get; set; }
+        [NotMapped] 
         public string PasswordLogin { get; set; }
-
         [NotMapped]
         public string? DisplayImage
         {

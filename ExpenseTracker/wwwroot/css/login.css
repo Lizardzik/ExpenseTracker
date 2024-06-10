@@ -18,8 +18,8 @@ body {
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    width: 350px;
-    height: 560px;
+    width: 370px;
+    height: 620px;
     overflow: hidden;
     border: 1px solid #001f3f;
 }
@@ -71,24 +71,6 @@ body {
     transition: .5s ease-in-out;
 }
 
-.e-upload-picture {
-    display: inline-block;
-    padding: 6px 20px;
-    background-color: #c89600; 
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px; 
-}
-
-    .e-upload-picture:hover {
-        background-color: #ad7b00; 
-    }
-
-    .form-group-button {
-        text-align: center; 
-    }
 
 label {
     padding-top: 5px;
@@ -97,11 +79,11 @@ label {
 /*LOGIN*/
 
 .login {
-    height: 540px;
-    width: 356px;
+    height: 620px;
+    width: 376px;
     background: linear-gradient(to bottom, #fffa6a, #4a90e2);
     border-radius: 70% / 10%;
-    transform: translateY(-100px);
+    transform: translateY(-80px);
     transition: .8s ease-in-out;
 }
 
@@ -112,9 +94,8 @@ label {
     }
 
 #chk:checked ~ .login {
-    transform: translateY(-520px);
+    transform: translateY(-580px);
 }
-
     #chk:checked ~ .login .labelForm {
         transform: scale(1);
     }
@@ -175,3 +156,15 @@ label {
         font-size: 24px;
        
     }
+
+.form-group-button {
+    padding-top: 20px; /* Dostosuj wartoœæ wed³ug preferencji */
+}
+
+.e-upload .e-upload-files .e-upload-file-list {
+    height: 15px;
+  
+}
+.e-file-size {
+    display: none !important;
+}

@@ -1,9 +1,9 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('profileImage').addEventListener('change', function () {
-        var fileName = this.files[0].name;
-        var displayedFileName = fileName.length > 8 ? fileName.substring(0, 8) + '...' : fileName;
-        document.getElementById('selectedFileName').innerText = displayedFileName;
-    });
+    //document.getElementById('profileImage').addEventListener('change', function () {
+    //    var fileName = this.files[0].name;
+    //    var displayedFileName = fileName.length > 8 ? fileName.substring(0, 8) + '...' : fileName;
+    //    document.getElementById('selectedFileName').innerText = displayedFileName;
+    //});
 
     //Logic of inputs 
     document.getElementById('chk').addEventListener('change', function () {

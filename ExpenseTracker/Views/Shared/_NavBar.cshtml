@@ -2,7 +2,8 @@
     var userImage = @Context.Session.GetString("UserImage");
     var imageUrl = !string.IsNullOrEmpty(userImage) ? userImage : "~/userImage.png";
 }
-<nav class="navbar sticky-top my-navbar bg-light">
+
+<nav class="navbar sticky-top my-navbar bg-light" id="navbar">
     <div class="container-fluid py-2 px-4">
         <i class="fa-solid fa-magnifying-glass"></i>
         <div>

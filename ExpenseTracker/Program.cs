@@ -18,7 +18,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 //Syncfusion LICENSE
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5WdURiWH1bdH1TRWBV");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");  //here insert your syncfusion license
 
 var app = builder.Build();
 

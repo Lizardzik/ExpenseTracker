@@ -1,50 +1,44 @@
+# 🎬 Movie & Series Explorer
 
-# Expense Tracker
+Movie & Series Explorer is a web application built with React, utilizing the Movie DB API. It allows users to browse movies and TV series, filter them by various criteria, and save favorite titles in local storage.
 
-Expense Tracker is a web application that allows users to track their personal expenses. Each user can log in to their account and view, add, edit, and delete their own transactions. The application provides various features to help manage personal finances, such as categorizing expenses and displaying them in charts.
+## 🚀 Features
 
-## Features
+- Fetching a larger number of movies compared to the original tutorial
+- Dynamic movie search
+- Improved "Favorites" storage in Local Storage
+- Fetching and displaying details for both movies and TV series
+- TV series support (fetching, details, filtering)
+- Separate Favorites pages for movies and TV series
+- Filtering options:
+  - Release year
+  - Rating
+  - Genre (for both movies and TV series)
+- Fetching individual genres separately for movies and TV series
+- Navigation remembers the last visited page
+- Pagination for better browsing experience
 
-- **Multi-user Support**: Each user can log in and only view their own transactions.
-- **Image Handling**: Ability to add images (stored in the database as byte[]) to transactions and display them.
-- **Front-end Technologies**: The website is built using Bootstrap, CSS, and Syncfusion components.
-- **Expense CRUD**: Users can create, read, update, and delete both expense categories and individual expenses.
-- **Charts and Navigation**: Expenses are displayed using charts for better visualization, and a navbar helps with easy navigation.
-- **User Sessions**: User identification is managed through sessions, allowing for secure and personalized experiences.
+## 🛠 Technologies Used
 
-## Technologies Used
+- React.js
+- JavaScript
+- CSS
+- HTML
+- React Router
+- Movie DB API
+- Local Storage
 
-- **EntityFramework**: Used for database operations.
-- **Syncfusion**: Used for front-end components, licensed for use in this project.
-- **Bootstrap**: Used for responsive design and styling.
-- **JavaScript**: Used for dynamic front-end functionality.
-- **Sessions**: Used for user identification and management.
-## Installation
+## 🎓 Inspiration
 
-1. **Download the project:**
-    ```bash
-    git clone https://github.com/Lizardzik/ExpenseTracker.git
-    ```
-2. **Open it in Microsoft Visual Studio:**
-    ```bash
-    in a repos folder
-    ```
-3. **Change the ConnectionString:**
-    ```bash
-   in appsettings to match you SQL server
-    ```
-4. **Use Enitity FrameWork to create database:**
-    - Run database migrations or use provided scripts to set up the schema.
-5. **Try application:**
+This project was based on the following tutorial: [YouTube Tutorial](https://www.youtube.com/watch?v=G6D9cBaLViA&list=PLiJZWmkc_oNQfs_wnX341960IqwM9GEEc&index=2), but has been significantly expanded with additional features.
 
-## Usage
+## 👨‍💻 About the Project
 
-1. Open your web browser.
-2. Register a new account.
-3. Start tracking your expenses by adding new transactions, categorizing them, and viewing the summary in the provided charts.
+This is a personal project created to improve my React skills. The development took approximately 20-30 hours.
 
-## Development Time
+## 🔧 Possible Improvements
 
-I spent approximately 36 hours developing this project. It is far from perfect but im trying to improve.
+- User authentication system
+- Better error handling
+- Optimized API data fetching
 
-![ExpenseTracker](https://github.com/Lizardzik/ExpenseTracker/assets/171255022/70b0ed3c-e47e-43f8-b4c4-ce4f4e1714a8)
